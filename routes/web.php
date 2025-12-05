@@ -4,8 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminHomeController;
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
+
+Route::get('/', [AdminHomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
