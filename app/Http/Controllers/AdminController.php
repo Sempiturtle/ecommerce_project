@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Redis;
+use App\Models\Product;
 
 use function Flasher\Toastr\Prime\toastr;
 
@@ -52,5 +53,24 @@ class AdminController extends Controller
         $data->save();
         toastr()->timeOut(5000)->closeButton()->addSuccess('Category Updated Successfully.');
         return redirect('/view_category');
+    }
+
+    public function add_product(){
+
+        $category = Category::all();
+
+        return view('admin.add_product', compact('category'));
+    }
+
+    public function upload_product(Request $request){
+        Product::create([
+            'title' =>$request->title,
+            'description' =>$request->description,
+            'price' =>$request->price,
+            'quantity' =>$request->quantity,
+            'category' =>$request->category,
+        ]);
+
+        return redirect()->back();
     }
 }
