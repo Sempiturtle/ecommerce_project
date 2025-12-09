@@ -82,7 +82,7 @@
                             <select name="category" required>
                                 <option value="">Select an Option</option>
 
-                                @foreach ($category as $categories)
+                                @foreach ($category as $category)
                                     <option value="{{ $category->category_name }}">{{ $category->category_name }}
                                     </option>
                                 @endforeach
